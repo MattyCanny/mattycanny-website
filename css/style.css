@@ -1,0 +1,353 @@
+/* Mattycanny – base and layout */
+:root {
+  --color-bg: #0f0f12;
+  --color-surface: #1a1a1f;
+  --color-text: #e8e8ec;
+  --color-text-muted: #9a9aa5;
+  --color-accent: #9147ff;
+  --color-accent-hover: #772ce8;
+  --color-twitch: #9147ff;
+  --color-discord: #5865f2;
+  --font-sans: "Segoe UI", system-ui, sans-serif;
+  --font-size-base: 1rem;
+  --line-height: 1.6;
+  --space: 1.25rem;
+  --header-height: 3.5rem;
+  --max-width: 56rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* Parallax layer - hero image moves slower on scroll; gradient shows where image doesn't cover */
+.parallax-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(180deg, #8b1538 0%, #1e3a5f 50%, #0d1b2a 100%);
+}
+.parallax-layer img {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%) translateY(var(--parallax-y, 0));
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: var(--space);
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: var(--space);
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 15, 18, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.75rem var(--space);
+  gap: var(--space);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.logo img {
+  display: block;
+  height: 2rem;
+  width: auto;
+}
+.logo-text {
+  display: none;
+}
+.logo img[style*="display: none"] ~ .logo-text {
+  display: inline;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle::before {
+  content: "";
+  width: 1.25rem;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor;
+}
+@media (max-width: 48rem) {
+  .nav-toggle {
+    display: flex;
+  }
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav.is-open {
+    max-height: 20rem;
+  }
+  .nav-list {
+    flex-direction: column;
+    padding: var(--space);
+  }
+  .nav-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .nav-list a {
+    display: block;
+    padding: 0.75rem 0;
+  }
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.nav-list a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Main */
+.main {
+  min-height: calc(100vh - var(--header-height));
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space);
+}
+
+/* Hero - empty spacer; parallax layer shows behind */
+.hero {
+  min-height: 70vh;
+}
+
+.main {
+  position: relative;
+  z-index: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.btn-twitch {
+  background: var(--color-twitch);
+  color: #fff;
+}
+.btn-twitch:hover {
+  background: var(--color-accent-hover);
+}
+.btn-discord {
+  background: var(--color-discord);
+  color: #fff;
+}
+.btn-discord:hover {
+  background: #4752c4;
+}
+
+/* Sections - solid background so parallax only shows in hero */
+.section {
+  padding: 3rem 0;
+  background: var(--color-bg);
+}
+.section.about,
+.section.blog {
+  background: #000;
+}
+.section.blog {
+  margin-top: 50px;
+}
+.section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.section p {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+  max-width: 40rem;
+}
+.section p:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.community-note {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+.community-note code {
+  padding: 0.15rem 0.35rem;
+  background: var(--color-surface);
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+}
+
+/* Social banners - full width, stacked */
+.social-banners {
+  padding: 50px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.social-banners-list {
+  display: flex;
+  flex-direction: column;
+}
+.social-banner {
+  position: relative;
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+.social-banner:hover {
+  opacity: 0.95;
+}
+.social-banner:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+.social-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  vertical-align: middle;
+}
+.social-banner-btn {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -50%);
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.social-banner--discord .social-banner-btn {
+  background: #5865f2;
+}
+.social-banner--facebook .social-banner-btn {
+  background: #1877f2;
+}
+.social-banner--tiktok .social-banner-btn {
+  background: #fe2c55;
+}
+.social-banner--youtube .social-banner-btn {
+  background: #ff0000;
+}
+
