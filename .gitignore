@@ -9,6 +9,10 @@ Thumbs.db
 *.swo
 *~
 
+# Dependencies
+node_modules/
+.pnpm-store/
+
 # Local / private (keep off GitHub)
 DNS-BACKUP.md
 DNS-NEXT-STEPS.md
