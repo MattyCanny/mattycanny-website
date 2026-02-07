@@ -294,6 +294,29 @@ body {
   font-size: 0.85em;
 }
 
+/* Merch banner - full width, between About and Blog, 50px spacing */
+.merch-banners {
+  padding: 50px 0;
+}
+.merch-banners-list {
+  display: flex;
+  flex-direction: column;
+}
+.social-banner--merch .social-banner-btn {
+  background: var(--color-accent);
+}
+
+/* Merch banner on mobile - tighter spacing, slightly smaller button */
+@media (max-width: 48rem) {
+  .merch-banners {
+    padding: 24px 0;
+  }
+  .merch-banners-list .social-banner-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* Social banners - full width, stacked */
 .social-banners {
   padding: 50px 0 0;
@@ -337,17 +360,5 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   pointer-events: none;
-}
-.social-banner--discord .social-banner-btn {
-  background: #5865f2;
-}
-.social-banner--facebook .social-banner-btn {
-  background: #1877f2;
-}
-.social-banner--tiktok .social-banner-btn {
-  background: #fe2c55;
-}
-.social-banner--youtube .social-banner-btn {
-  background: #ff0000;
 }
 
