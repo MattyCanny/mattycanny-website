@@ -1,0 +1,10 @@
+{
+  "name": "mattycanny-website",
+  "private": true,
+  "scripts": {
+    "preview": "serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
