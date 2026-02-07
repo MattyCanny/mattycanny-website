@@ -8,3 +8,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Local / private (keep off GitHub)
+DNS-BACKUP.md
+DNS-NEXT-STEPS.md
+DNS-123REG-CHECKLIST.md
